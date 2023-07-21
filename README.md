@@ -2,6 +2,9 @@
 This repository contains code for the method ***"DeepGraphDMD: Interpretable Spatio-Temporal Decomposition of Non-linear Functional Brain Network Dynamics"*** which is accepted in MICCAI 2023.
 ![Illustration](fig_illustration.png)
 
+## Installation
+To run the module in this repository, create a docker image from `docker/docker_command.sh` and run the code inside the running docker instance. Alternatively, install requirements from docker/requirements.txt in a virtual environment.
+
 ## Dataset
 Download HCP resting-state data from [HCP1200 Parcellation+Timeseries+Netmats (PTN)](https://db.humanconnectome.org/data/projects/HCP_1200). The time-series data used in this project resides in the folder ```HCP_PTN1200/node_timeseries/3T_HCP1200_MSMAll_d{parcel}_ts2``` (for the experiments in the paper, ```parcel=50``` but other values can also be used).
 
