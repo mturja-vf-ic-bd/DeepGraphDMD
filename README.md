@@ -37,6 +37,7 @@ python3 -m src.GraphDMD.cluster_group_gdmd --min_psi <lower_freq> --max_psi <upp
 
 ## Regression Analysis of Behavioral Measures from HCP
 Train an ElasticNet regressor, to regress various behavioral measures of HCP data using the aligned DMD modes `Phi_aligned`:
+
 ```python3 -m src.HCP1200.training-cv --target <behavioral_measure_name> --corr_type gDMD_multi --l_freq <lower_freq> --r_freq <upper_freq> --q 0.4' --output=training-cv-gDMD_multi_<behavioral_measure_name>_<lower_freq>-<upper_freq>.txt```
 
 Example:
