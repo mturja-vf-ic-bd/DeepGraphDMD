@@ -94,7 +94,7 @@ if __name__ == '__main__':
         description='Predict behavioral factors from functional connectivity'
     )
     parser.add_argument('--target', type=str, default="CogTotalComp_AgeAdj")
-    parser.add_argument('--corr_type', type=str, default="ikeda_dmd")
+    parser.add_argument('--corr_type', type=str, default="gDMD_multi")
     parser.add_argument('--l_freq', type=float, default=0.07)
     parser.add_argument('--r_freq', type=float, default=0.08)
     parser.add_argument('--m', type=int, default=1)

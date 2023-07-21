@@ -193,10 +193,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--subject_id", type=str)
     parser.add_argument("--trial", type=int, default=0)
-    parser.add_argument("--min_K", type=int, default=12,
+    parser.add_argument("--min_K", type=int, default=10,
                         help="Minimum number of clusters of a range for cross-validation")
-    parser.add_argument("--max_K", type=int, default=13,
-                        help="Minimum number of clusters of a range for cross-validation")
+    parser.add_argument("--max_K", type=int, default=20,
+                        help="Maximum number of clusters of a range for cross-validation")
     parser.add_argument("--min_psi", type=float, default=0)
     parser.add_argument("--max_psi", type=float, default=0.2,
                         help="Maximum frequency for which DMD modes will be considered")
