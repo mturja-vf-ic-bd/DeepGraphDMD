@@ -10,3 +10,17 @@ To train the model, ```SparseEdgeKoopman/trainer.py``` file is used in the follo
 ```
 python3 -m src.SparseEdgeKoopman.trainer --weight 1 10 0.5 --hidden_dim 64 -g 1 -m 500 -d 0.1 --lr 1e-4 --mode train --write_dir SparseEdgeKoopman/megatrawl/win=16_lkis=64 --window 16 --lkis_window 64 --batch_size 16 --stride 4 --latent_dim 32 &
 ```
+
+## Prediction (Generate latent network embedding that has linear dynamics)
+```
+python3 -m src.SparseEdgeKoopman.predict --subject_id <subject_id> --window 16 --stride 4 --trial 0
+```
+
+## Applying GraphDMD on the generated latent network sequence
+Run the `Matlab` script: `src/GraphDMD/batch_wise_DeepgDMD.m` to generate DMD modes `Phi` and their frequency `Psi` for every lkis window.
+```
+batch_wise_DeepgDMD(<subject_id>)
+```
+
+
+
