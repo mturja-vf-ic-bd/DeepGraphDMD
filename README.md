@@ -12,7 +12,7 @@ python3 -m src.SparseEdgeKoopman.trainer --weight 1 10 0.5 --hidden_dim 64 -g 1 
 ```
 
 ## Prediction (Generate latent network embedding that has linear dynamics)
-After the model is trained, generate latent network sequence for every subject using the following command:
+After the model is trained, generate a latent network sequence for every subject using the following command:
 ```
 python3 -m src.SparseEdgeKoopman.predict --subject_id <subject_id> --window 16 --stride 4 --trial 0
 ```
@@ -29,13 +29,18 @@ To aggregate `Phi` across all lkis windows and generate a set of average `Phi_av
 python3 -m src.GraphDMD.cluster_gdmd_modes --subject_id <subject_id> --trial 0 --min_K 8 --max_K 15 --min_psi 0 --max_psi 0.15
 ```
 
-Now, the aggregated `Phi_avg` can be used to do downstream tasks such as predicting behavioral measures. However, before that run the following script to align the `Phi_avg` modes across subjects:
+Now, the aggregated `Phi_avg` can be used to do downstream tasks such as predicting behavioral measures. However, before that run the following script to align the `Phi_avg` modes across subjects (`Phi_aligned`):
 
 ```
 python3 -m src.GraphDMD.cluster_group_gdmd --min_psi <lower_freq> --max_psi <upper_freq>
 ```
 
-## Regression 
+## Regression Analysis of Behavioral Measures from HCP
+Train an ElasticNet regressor, to regress various behavioral measures of HCP data using the aligned DMD modes `Phi_aligned`:
+```python3 -m src.HCP1200.training-cv --target <behavioral_measure_name> --corr_type gDMD_multi --l_freq <lower_freq> --r_freq <upper_freq> --q 0.4' --output=training-cv-gDMD_multi_<behavioral_measure_name>_<lower_freq>-<upper_freq>.txt```
+
+Example:
+```python3 -m src.HCP1200.training-cv --target CogTotalComp_AgeAdj --corr_type gDMD_multi --l_freq 0.07 --r_freq 0.08 --q 0.4' --output=training-cv-gDMD_multi_CogTotalComp_AgeAdj_0.07-0.08_aligned.txt```
 
 
 
