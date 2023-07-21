@@ -1,0 +1,4 @@
+#!/bin/bash
+python3 -m src.SparseEdgeKoopman.trainer --weight 1 100 0.5 --hidden_dim 64 -g 1 -m 50 -d 0.1 --lr 1e-4 --mode train --write_dir SparseEdgeKoopman/win=16_lkis=64_k=41 --window 16 --lkis_window 64 --k 41 --batch_size 8 --stride 3 --latent_dim 128 &
+python3 -m src.SparseEdgeKoopman.trainer --dataset "megatrawl" --weight 1 10 0.5 --hidden_dim 64 -g 1 -m 500 -d 0.1 --lr 1e-4 --mode train --write_dir SparseEdgeKoopman/magatrawl/win=16_lkis=64 --window 16 --lkis_window 64 --batch_size 16 --stride 8 --latent_dim 32 &
+python3 -m src.SparseEdgeKoopman.trainer --dataset "megatrawl" --weight 1 5 1 --hidden_dim 32 --num_nodes 50 -g 1 -m 100 -d 0.1 --sp_rat 0.1 --lr 1e-3 --mode train --write_dir SparseEdgeKoopman/magatrawl/win=16_lkis=128_latent_8_sprat=0.1_bn --window 16 --lkis_window 128 --batch_size 2 --stride 8 --latent_dim 8 &
