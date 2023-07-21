@@ -12,15 +12,30 @@ python3 -m src.SparseEdgeKoopman.trainer --weight 1 10 0.5 --hidden_dim 64 -g 1 
 ```
 
 ## Prediction (Generate latent network embedding that has linear dynamics)
+After the model is trained, generate latent network sequence for every subject using the following command:
 ```
 python3 -m src.SparseEdgeKoopman.predict --subject_id <subject_id> --window 16 --stride 4 --trial 0
 ```
 
-## Applying GraphDMD on the generated latent network sequence
+## Applying GraphDMD to extract DMD modes and their frequency
 Run the `Matlab` script: `src/GraphDMD/batch_wise_DeepgDMD.m` to generate DMD modes `Phi` and their frequency `Psi` for every lkis window.
 ```
 batch_wise_DeepgDMD(<subject_id>)
 ```
+
+To aggregate `Phi` across all lkis windows and generate a set of average `Phi_avg` for each subject, run the following python script:
+
+```
+python3 -m src.GraphDMD.cluster_gdmd_modes --subject_id <subject_id> --trial 0 --min_K 8 --max_K 15 --min_psi 0 --max_psi 0.15
+```
+
+Now, the aggregated `Phi_avg` can be used to do downstream tasks such as predicting behavioral measures. However, before that run the following script to align the `Phi_avg` modes across subjects:
+
+```
+python3 -m src.GraphDMD.cluster_group_gdmd --min_psi <lower_freq> --max_psi <upper_freq>
+```
+
+## Regression 
 
 
 
